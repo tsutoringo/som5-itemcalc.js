@@ -52,7 +52,7 @@ export const loadItems = (datas) => {
   };
 };
 
-const calculateItem = (item, amount, dataset, option) => {
+export const calculateItem = (item, amount, dataset, option) => {
   const needs = new Map();
 
   if (item.recipes) {
