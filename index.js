@@ -52,11 +52,14 @@ export const loadItems = (datas) => {
   };
 };
 
-export const calculateItem = (item, amount, dataset, option) => {
+export const calculateItem = (item, amount, dataset, option = {}) => {
   const needs = new Map();
 
-  if (item.recipes) {
-    const recipe = item.recipes[0];
+  const optionRecipe = option[item.name];
+
+  const recipe = (optionRecipe || optionRecipe === null) ? optionRecipe : item.recipes?.[0];
+
+  if (recipe) {
     for (const need of recipe.needs) {
       const _need = calculateItem(need.item, need.amount * amount, dataset, option);
       calcResultMerge(needs, _need);
